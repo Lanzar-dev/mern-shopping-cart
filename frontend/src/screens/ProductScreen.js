@@ -1,4 +1,5 @@
 import "./ProductScreen.css";
+import Fade from 'react-reveal/Fade';
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -34,6 +35,7 @@ const ProductScreen = ({match, history}) => {
             ) : (
                 <>
                     <div className="productscreen__left">
+                        <Fade left>
                         <div className="left__image">
                             <img src={product.imageUrl} alt={product.name} />
                         </div>
@@ -43,10 +45,13 @@ const ProductScreen = ({match, history}) => {
                             <p>Price: NGN {product.price}</p>
                             <p>Description: {product.description}</p>
                         </div>
+                        </Fade>
                     </div>
 
                     <div className="productscreen__right">
+                        <Fade right>
                         <div className="right__info">
+                            
                             <p>
                                 Price: <span>NGN {product.price}</span>
                             </p>
@@ -66,7 +71,9 @@ const ProductScreen = ({match, history}) => {
                             <p>
                                 <button type="button" onClick={addToCartHandler}>Add To Cart</button>
                             </p>
+                            
                         </div>
+                        </Fade>
                     </div>
                 </>
             )}

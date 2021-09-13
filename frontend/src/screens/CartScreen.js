@@ -1,5 +1,6 @@
 import CartItem from "../components/CartItem";
 import "./CartScreen.css";
+import Fade from 'react-reveal/Fade';
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -53,6 +54,7 @@ const CartScreen = () => {
     return (
         <div className="cartscreen">
             <div className="cartscreen__left">
+                <Fade left>
                 <h2>Shopping Cart</h2>
                 {cartItems.length === 0 ? (
                     <div>
@@ -61,8 +63,10 @@ const CartScreen = () => {
                 ) : cartItems.map(item => (
                     <CartItem key={item.product} item={item} qtyChangeHandler={qtyChangeHandler} removeHandler={removeHandler}/>
                 ))}
+                </Fade>
             </div>
             <div className="cartscreen__right">
+                <Fade top>
                 <div className="cartscreen__info">
                     <p>Subtotal ({ getCartCount()}) items</p>
                     <p><strong>NGN {getCartSubTotal().toFixed(2)}</strong></p>
@@ -70,9 +74,11 @@ const CartScreen = () => {
                 <div>
                     <button onClick={() => setShowCheckout(!showCheckout)}>Proceed To Checkout</button>
                 </div>
+                </Fade>
                 {/* Checkout form */}
                 {showCheckout && (
                      <article className='form'>
+                         <Fade right>
                         <form onSubmit={createOrder}>
                             <div className='form-control'>
                                 <label htmlFor='fullName'>Name : </label>
@@ -122,6 +128,7 @@ const CartScreen = () => {
                                Checkout
                             </button>
                         </form>
+                        </Fade>
                     </article>
                 )}
                 

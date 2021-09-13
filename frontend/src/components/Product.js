@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Product.css";
+import Fade from 'react-reveal/Fade';
 
 const Product = ({imageUrl, name, price, description, productId}) => {
     return (
+        <Fade bottom cascade>
         <div className="product">
+            
             <img src={imageUrl} alt={name} />
 
             <div className="product__info">
@@ -16,7 +19,9 @@ const Product = ({imageUrl, name, price, description, productId}) => {
                     View
                 </Link>
             </div>
+            
         </div>
+        </Fade>
     )
 }
 
