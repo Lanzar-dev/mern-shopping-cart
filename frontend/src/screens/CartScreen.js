@@ -65,7 +65,7 @@ const CartScreen = () => {
             <div className="cartscreen__right">
                 <div className="cartscreen__info">
                     <p>Subtotal ({ getCartCount()}) items</p>
-                    <p>${getCartSubTotal().toFixed(2)}</p>
+                    <p><strong>NGN {getCartSubTotal().toFixed(2)}</strong></p>
                 </div>
                 <div>
                     <button onClick={() => setShowCheckout(!showCheckout)}>Proceed To Checkout</button>

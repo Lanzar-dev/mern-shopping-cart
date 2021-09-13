@@ -40,7 +40,7 @@ const ProductScreen = ({match, history}) => {
 
                         <div className="left__info">
                             <p className="left__name">{product.name}</p>
-                            <p>Price: ${product.price}</p>
+                            <p>Price: NGN {product.price}</p>
                             <p>Description: {product.description}</p>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ const ProductScreen = ({match, history}) => {
                     <div className="productscreen__right">
                         <div className="right__info">
                             <p>
-                                Price: <span>${product.price}</span>
+                                Price: <span>NGN {product.price}</span>
                             </p>
                             <p>
                                 Status: <span>{product.countInStock > 0 ? "In Stock" : "Out of Stock"}</span>
