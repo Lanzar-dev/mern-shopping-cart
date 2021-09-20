@@ -6,11 +6,13 @@ import { useState } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
+import SigninScreen from "./screens/SigninScreen";
 
 // components
 import Navbar from "./components/Navbar";
 import Backdrop from "./components/Backdrop";
 import SideDrawer from "./components/SideDrawer";
+
 //import Footer from "./components/Footer";
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductScreen} />
+          <Route exact path="/signin" component={SigninScreen} />
           <Route exact path="/cart" component={CartScreen} />
         </Switch>
       </main>
