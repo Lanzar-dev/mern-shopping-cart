@@ -1,9 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const connectDB = require('./config/db');
+require("dotenv").config();
+const express = require("express");
+const connectDB = require("./config/db");
 const path = require("path");
-const productRoutes = require('./routes/productRoutes');
-const orderRoutes = require('./routes/orderRoutes');
+const productRoutes = require("./routes/productRoutes");
+
+const userRoutes = require("./routes/userRoutes");
 
 connectDB();
 
@@ -11,8 +12,12 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
 
 // if(process.env.NODE_ENV === "production") {
 //     app.use(express.static(path.join(__dirname, "../frontend/build")));
