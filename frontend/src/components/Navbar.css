@@ -65,6 +65,39 @@
   font-size: 1rem;
 }
 
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  min-width: 8rem;
+  padding: 1rem;
+  z-index: 1;
+  background-color: #171717;
+  margin: 0;
+  margin-top: 0.1rem;
+  margin-left: 50rem;
+  border-radius: 0.5rem;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #f4f4f4;
+}
+
+.dropdown:hover > a,
+.dropdown-content:hover > a {
+  color: #dd219e;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .hamburger__menu {
   width: 30px;
   height: 30px;

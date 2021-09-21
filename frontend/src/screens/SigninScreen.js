@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signin } from "../redux/actions/userActions";
 import "./SigninScreen.css";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
 
-function SigninScreen() {
+function SigninScreen({ location, history }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo, loading, error } = userSignin;
+
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
-    //TODO: signin action
+    dispatch(signin(email, password));
   };
+
+  useEffect(() => {
+    if (userInfo) {
+      history.push(redirect);
+    }
+  }, [userInfo, history, redirect]);
 
   return (
     <div>
@@ -17,6 +34,8 @@ function SigninScreen() {
         <div>
           <h2>Sign In</h2>
         </div>
+        {loading && <LoadingBox></LoadingBox>}
+        {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
           <label htmlFor="email">Email Address:</label>
           <input
@@ -57,7 +76,10 @@ function SigninScreen() {
         <div>
           <label />
           <span>
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account?{" "}
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              Register
+            </Link>
           </span>
         </div>
       </form>
