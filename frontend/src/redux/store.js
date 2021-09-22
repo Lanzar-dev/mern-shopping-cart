@@ -9,13 +9,17 @@ import {
   getProductDetailsReducer,
 } from "./reducers/productReducers";
 import { orderReducer } from "./reducers/orderReducers";
-import { userSigninReducer } from "./reducers/userReducers";
+import {
+  userRegisterReducer,
+  userSigninReducer,
+} from "./reducers/userReducers";
 
 const reducer = combineReducers({
   cart: cartReducer,
   getProducts: getProductsReducer,
   getProductDetails: getProductDetailsReducer,
   userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
   order: orderReducer,
 });
 

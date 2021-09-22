@@ -54,3 +54,7 @@ img {
   background-color: coral;
   color: #fff;
 }
+
+.loading {
+  display: block !important;
+}
