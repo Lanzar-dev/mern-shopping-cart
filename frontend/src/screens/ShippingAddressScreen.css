@@ -1,0 +1,27 @@
+.checkout-steps {
+  margin-top: 0.3rem;
+}
+
+.checkout-steps > div {
+  border-top: 0.3rem solid #c0c0c0;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.checkout-steps > div.active {
+  border-top-color: #f08000;
+  color: #f08000;
+}
+
+.form .phoneNumber {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form .phoneNumber p {
+  font-weight: bold;
+}

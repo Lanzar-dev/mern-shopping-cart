@@ -8,6 +8,7 @@ import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 
 // components
 import Navbar from "./components/Navbar";
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/product/:id" component={ProductScreen} />
           <Route exact path="/signin" component={SigninScreen} />
           <Route exact path="/register" component={RegisterScreen} />
+          <Route exact path="/shipping" component={ShippingAddressScreen} />
           <Route exact path="/cart" component={CartScreen} />
         </Switch>
       </main>

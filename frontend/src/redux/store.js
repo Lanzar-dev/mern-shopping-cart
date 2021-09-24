@@ -37,6 +37,9 @@ const INITIAL_STATE = {
   },
   cart: {
     cartItems: cartFromLocalStorage,
+    shippingAddress: localStorage.getItem("shippingAddress")
+      ? JSON.parse(localStorage.getItem("shippingAddress"))
+      : {},
   },
 };
 

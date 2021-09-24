@@ -45,7 +45,7 @@ function RegisterScreen({ location, history }) {
         {error && <MessageBox variant="danger">{error}</MessageBox>}
 
         <div>
-          <label htmlFor="email">Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
             id="name"
