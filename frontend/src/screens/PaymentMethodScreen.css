@@ -1,0 +1,40 @@
+/* .payment_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.2rem auto;
+}
+
+.payment_form div {
+  margin-bottom: 1rem;
+} */
+
+.form .payment_method {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .form .payment_method input {
+  margin-right: 0 1.9rem;
+} */
+
+/* .btn_payment {
+  display: inline-block;
+  background: #171717;
+  color: #f4f4f4;
+  border-color: transparent;
+  letter-spacing: var(--spacing);
+  padding: 0.4rem 0.6rem;
+  text-transform: capitalize;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.btn_payment:hover {
+  opacity: 0.8;
+} */

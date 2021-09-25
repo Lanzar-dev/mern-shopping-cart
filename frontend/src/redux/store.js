@@ -40,6 +40,7 @@ const INITIAL_STATE = {
     shippingAddress: localStorage.getItem("shippingAddress")
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : {},
+    paymentMethod: "Flutterwave",
   },
 };
 
