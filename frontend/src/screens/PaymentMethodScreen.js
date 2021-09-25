@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { savePaymentMethod } from "../redux/actions/cartActions";
 import "./PaymentMethodScreen.css";
 import "./SigninScreen.css";
 
 function PaymentMethodScreen({ history }) {
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
+  if (!shippingAddress.address) {
+    history.push("/shipping");
+  }
+
   const [paymentMethod, setPaymentMethod] = useState("Flutterwave");
 
   const dispatch = useDispatch();
@@ -34,6 +41,17 @@ function PaymentMethodScreen({ history }) {
             onChange={(e) => setPaymentMethod(e.target.value)}
           />
           <label htmlFor="flutterwave">Flutterwave</label>
+        </div>
+        <div className="payment_method">
+          <input
+            type="radio"
+            id="paystack"
+            value="Paystack"
+            name="paymentMethod"
+            required
+            onChange={(e) => setPaymentMethod(e.target.value)}
+          />
+          <label htmlFor="paystack">Paystack</label>
         </div>
         <div>
           <button className="btn btn-primary" type="submit">
