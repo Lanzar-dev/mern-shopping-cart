@@ -34,6 +34,8 @@ function PlaceOrderScreen({ history }) {
                 <h3>Shipping</h3>
                 <p>
                   <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
+                  <strong>Phone Number: +234</strong>
+                  {cart.shippingAddress.phoneNumber} <br />
                   <strong>Address:</strong> {cart.shippingAddress.address},{" "}
                   {cart.shippingAddress.city}, {cart.shippingAddress.region}
                 </p>

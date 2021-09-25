@@ -3,8 +3,8 @@ const express = require("express");
 const connectDB = require("./config/db");
 const path = require("path");
 const productRoutes = require("./routes/productRoutes");
-
 const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 connectDB();
 
@@ -14,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
