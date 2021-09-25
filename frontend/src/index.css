@@ -14,6 +14,16 @@ img {
   object-fit: contain;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+li {
+  margin-top: 1rem;
+}
+
 .form,
 .form label,
 .form input {
@@ -67,3 +77,36 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+
+/* place order screen */
+
+.row.top {
+  align-items: flex-start;
+}
+
+.col-1 {
+  flex: 1 1 25rem;
+}
+.col-2 {
+  flex: 2 1 50rem;
+}
+
+.card {
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-body > * {
+  margin-bottom: 0.5rem;
+}
+
+/* img.cartitem__image {
+  max-width: 5rem;
+  width: 100%;
+} */
