@@ -1,32 +1,36 @@
-import axios from "axios"
-import { CLEAR_CART, CLEAR_ORDER, CREATE_ORDER } from "../constants/cartConstants"
+import axios from "axios";
+import { CART_EMPTY } from "../constants/cartConstants";
+import {
+  ORDER_CREATE_FAIL,
+  ORDER_CREATE_REQUEST,
+  ORDER_CREATE_SUCCESS,
+} from "../constants/orderConstants";
 
-export const createOrder = (order) => async (dispatch) => {
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }
+export const createOrder = (order) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
 
-    await axios.post("api/orders", {
-        config,
-        body: JSON.stringify(order)
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        dispatch({
-            type: CREATE_ORDER, 
-            payload: data
-        });
+  try {
+    const {
+      userSignin: { userInfo },
+    } = getState();
 
-        localStorage.clear("cart");
-
-        dispatch({type: CLEAR_CART});
-    })
-}
-
-export const clearOrder = () => (dispatch) => {
-    dispatch({
-        type: CLEAR_ORDER
+    const { data } = await axios.post("/api/orders", order, {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     });
-}
+
+    dispatch({ type: ORDER_CREATE_SUCCESS, payload: data.order });
+    dispatch({ type: CART_EMPTY });
+
+    localStorage.removeItem("cartItems");
+  } catch (error) {
+    dispatch({
+      type: ORDER_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
