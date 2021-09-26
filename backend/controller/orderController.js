@@ -36,4 +36,17 @@ const orderDetails = async (req, res, next) => {
   }
 };
 
-module.exports = { orderDetails };
+const orderDetailsById = async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      res.send(order);
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { orderDetails, orderDetailsById };
