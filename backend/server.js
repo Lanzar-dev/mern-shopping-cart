@@ -15,6 +15,10 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+//flutterwave public key
+app.get("/api/config/fluttwerwave", (req, res) => {
+  res.send(process.env.REACT_APP_PUBLIC_KEY);
+});
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

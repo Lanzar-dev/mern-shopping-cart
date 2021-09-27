@@ -9,6 +9,8 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { detailsOrder } from "../redux/actions/orderActions";
 
+import FlutterwavePament from "../components/FlutterwavePayment";
+
 function OrderScreen({ match }) {
   const orderId = match.params.id;
 
@@ -131,6 +133,7 @@ function OrderScreen({ match }) {
                       </div>
                     </div>
                   </li>
+                  <FlutterwavePament />
                 </ul>
               </div>
             </div>
