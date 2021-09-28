@@ -1,6 +1,7 @@
 import React from "react";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useSelector } from "react-redux";
+import "./FlutterwavePayment.css";
 
 export default function App() {
   const orderDetails = useSelector((state) => state.orderDetails);
@@ -35,6 +36,7 @@ export default function App() {
   return (
     <div className="App">
       <button
+        className="btn-flutterwave"
         onClick={() => {
           handleFlutterPayment({
             callback: (response) => {

@@ -1,0 +1,14 @@
+.App .btn-flutterwave {
+  padding: 10px 17px;
+  width: 100%;
+  background: #f5a623;
+  color: #f4f4f4;
+  border: transparent;
+  cursor: pointer;
+  margin-top: 1.3rem;
+  border-radius: 3px;
+}
+
+.App .btn-flutterwave:hover {
+  opacity: 0.9;
+}
