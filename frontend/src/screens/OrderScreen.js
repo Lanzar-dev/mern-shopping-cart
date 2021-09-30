@@ -10,10 +10,7 @@ import MessageBox from "../components/MessageBox";
 import { detailsOrder, payOrder } from "../redux/actions/orderActions";
 
 import FlutterwavePament from "../components/FlutterwavePayment";
-import {
-  ORDER_PAY_RESET,
-  //ORDER_PAY_SUCCESS,
-} from "../redux/constants/orderConstants";
+import { ORDER_PAY_RESET } from "../redux/constants/orderConstants";
 
 function OrderScreen({ match }) {
   const orderId = match.params.id;
@@ -38,8 +35,6 @@ function OrderScreen({ match }) {
   }, [dispatch, orderId, order, successPay]);
 
   const successPaymentHandler = (paymentResult) => {
-    //CHECKING ORDER_PAY_SUCCESS
-    // dispatch({ type: ORDER_PAY_SUCCESS });
     dispatch(payOrder(order, paymentResult));
   };
 
@@ -84,7 +79,8 @@ function OrderScreen({ match }) {
                     <p>
                       <strong>Method:</strong> {order.paymentMethod}
                     </p>
-                    {order.isPaid && order.paymentResult === "successful" ? (
+                    {order.isPaid &&
+                    order.paymentResult.status === "successful" ? (
                       <MessageBox variant="success">
                         Paid at {order.paidAt}
                       </MessageBox>

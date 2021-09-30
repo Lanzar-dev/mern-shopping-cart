@@ -3,7 +3,7 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { useSelector } from "react-redux";
 import "./FlutterwavePayment.css";
 
-export default function App() {
+export default function App(props) {
   const orderDetails = useSelector((state) => state.orderDetails);
   const {
     order: { shippingAddress, totalPrice },
@@ -41,6 +41,8 @@ export default function App() {
           handleFlutterPayment({
             callback: (response) => {
               console.log(response);
+              props.onSuccess(response);
+
               closePaymentModal(); // this will close the modal programmatically
             },
             onClose: () => {},
