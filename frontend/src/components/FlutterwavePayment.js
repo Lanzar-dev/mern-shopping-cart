@@ -21,7 +21,7 @@ export default function App() {
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: userInfo.email,
-      phonenumber: shippingAddress.phoneNumber,
+      phone_number: shippingAddress.phoneNumber,
       name: shippingAddress.fullName,
     },
     customizations: {

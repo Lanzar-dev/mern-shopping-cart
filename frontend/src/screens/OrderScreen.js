@@ -7,9 +7,13 @@ import "./OrderScreen.css";
 
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { detailsOrder } from "../redux/actions/orderActions";
+import { detailsOrder, payOrder } from "../redux/actions/orderActions";
 
 import FlutterwavePament from "../components/FlutterwavePayment";
+import {
+  ORDER_PAY_RESET,
+  //ORDER_PAY_SUCCESS,
+} from "../redux/constants/orderConstants";
 
 function OrderScreen({ match }) {
   const orderId = match.params.id;
@@ -17,11 +21,27 @@ function OrderScreen({ match }) {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingPay,
+    error: errorPay,
+    success: successPay,
+  } = orderPay;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
+    if (!order || successPay || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch(detailsOrder(orderId));
+    }
+  }, [dispatch, orderId, order, successPay]);
+
+  const successPaymentHandler = (paymentResult) => {
+    //CHECKING ORDER_PAY_SUCCESS
+    // dispatch({ type: ORDER_PAY_SUCCESS });
+    dispatch(payOrder(order, paymentResult));
+  };
 
   return (
     <div>
@@ -64,7 +84,7 @@ function OrderScreen({ match }) {
                     <p>
                       <strong>Method:</strong> {order.paymentMethod}
                     </p>
-                    {order.isPaid ? (
+                    {order.isPaid && order.paymentResult === "successful" ? (
                       <MessageBox variant="success">
                         Paid at {order.paidAt}
                       </MessageBox>
@@ -77,7 +97,7 @@ function OrderScreen({ match }) {
                   <div className="card card-body">
                     <h3>Order Items</h3>
                     {order.orderItems.map((item) => (
-                      <div className="cartitem">
+                      <div className="cartitem" key={item.product}>
                         <div className="cartitem__image">
                           <img src={item.imageUrl} alt={item.name} />
                         </div>
@@ -133,7 +153,16 @@ function OrderScreen({ match }) {
                       </div>
                     </div>
                   </li>
-                  <FlutterwavePament />
+                  {!order.isPaid && (
+                    <>
+                      {errorPay && (
+                        <MessageBox variant="danger">{errorPay}</MessageBox>
+                      )}
+                      {loadingPay && <LoadingBox></LoadingBox>}
+
+                      <FlutterwavePament onSuccess={successPaymentHandler} />
+                    </>
+                  )}
                 </ul>
               </div>
             </div>

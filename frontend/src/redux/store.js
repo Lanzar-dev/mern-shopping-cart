@@ -11,6 +11,7 @@ import {
 import {
   orderCreateReducers,
   orderDetailsReducer,
+  orderPayReducer,
 } from "./reducers/orderReducers";
 import {
   userRegisterReducer,
@@ -25,6 +26,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   orderCreate: orderCreateReducers,
   orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
 });
 
 const middleware = [thunk];

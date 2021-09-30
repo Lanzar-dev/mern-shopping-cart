@@ -45,13 +45,16 @@ function PaymentMethodScreen({ history }) {
         <div className="payment_method">
           <input
             type="radio"
-            id="paystack"
-            value="Paystack"
+            id="cashOnDelivery"
+            value="cashOnDelivery"
             name="paymentMethod"
+            disabled={true}
             required
             onChange={(e) => setPaymentMethod(e.target.value)}
           />
-          <label htmlFor="paystack">Paystack</label>
+          <label htmlFor="cashOnDelivery">
+            Cash On Delivery (Not available for now)
+          </label>
         </div>
         <div>
           <button className="btn btn-primary" type="submit">

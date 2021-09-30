@@ -68,7 +68,7 @@ function PlaceOrderScreen({ history }) {
               <div className="card card-body">
                 <h3>Order Items</h3>
                 {cart.cartItems.map((item) => (
-                  <div className="cartitem">
+                  <div className="cartitem" key={item.product}>
                     <div className="cartitem__image">
                       <img src={item.imageUrl} alt={item.name} />
                     </div>
