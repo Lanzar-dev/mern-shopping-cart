@@ -48,9 +48,14 @@ const Navbar = ({ click }) => {
                 {userInfo.name} <i className="fa fa-caret-down"></i>
               </Link>
               <ul className="dropdown-content">
-                <Link to="#signout" onClick={signoutHandler}>
-                  Sign Out
-                </Link>
+                <li>
+                  <Link to="orderhistory">Order History</Link>
+                </li>
+                <li>
+                  <Link to="#signout" onClick={signoutHandler}>
+                    Sign Out
+                  </Link>
+                </li>
               </ul>
             </div>
           ) : (

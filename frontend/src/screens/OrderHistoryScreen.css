@@ -1,0 +1,11 @@
+.order_history h2 {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table button.small:hover {
+  background: #171717;
+  color: #f4f4f4;
+}

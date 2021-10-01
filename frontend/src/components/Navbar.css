@@ -89,8 +89,11 @@
   color: #f4f4f4;
 }
 
-.dropdown:hover > a,
-.dropdown-content:hover > a {
+.dropdown:hover > a {
+  color: #dd219e;
+}
+
+.dropdown-content a:hover {
   color: #dd219e;
 }
 

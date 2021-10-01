@@ -51,6 +51,7 @@ const orderDetailsById = async (req, res, next) => {
 
 const orderPaymentDetailsUpdate = async (req, res, next) => {
   const order = await Order.findById(req.params.id);
+
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
@@ -68,4 +69,14 @@ const orderPaymentDetailsUpdate = async (req, res, next) => {
   }
 };
 
-module.exports = { orderDetails, orderDetailsById, orderPaymentDetailsUpdate };
+const getUserOrders = async (req, res) => {
+  const orders = await Order.find({ user: req.user._id });
+  res.send(orders);
+};
+
+module.exports = {
+  orderDetails,
+  orderDetailsById,
+  orderPaymentDetailsUpdate,
+  getUserOrders,
+};
