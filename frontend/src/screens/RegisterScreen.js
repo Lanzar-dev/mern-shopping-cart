@@ -85,12 +85,12 @@ function RegisterScreen({ location, history }) {
             placeholder="Enter confirm password"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
-            tabIndex={3}
+            tabIndex={4}
           />
         </div>
         <div>
           <label />
-          <button className="btn btn-primary" type="submit" tabIndex={4}>
+          <button className="btn btn-primary" type="submit" tabIndex={5}>
             Register
           </button>
         </div>

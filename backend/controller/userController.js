@@ -52,3 +52,12 @@ exports.register = async (req, res, next) => {
     // res.status(401).send({ message: "Email already exist" });
   }
 };
+
+exports.getUserById = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (user) {
+    res.send(user);
+  } else {
+    res.status(404).send({ message: "User Not Found" });
+  }
+};
