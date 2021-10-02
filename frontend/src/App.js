@@ -19,6 +19,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import Navbar from "./components/Navbar";
 import Backdrop from "./components/Backdrop";
 import SideDrawer from "./components/SideDrawer";
+import PrivateRoute from "./components/PrivateRoute";
 
 //import Footer from "./components/Footer";
 
@@ -41,7 +42,7 @@ function App() {
           <Route exact path="/placeorder" component={PlaceOrderScreen} />
           <Route exact path="/order/:id" component={OrderScreen} />
           <Route exact path="/orderhistory" component={OrderHistoryScreen} />
-          <Route exact path="/profile" component={ProfileScreen} />
+          <PrivateRoute exact path="/profile" component={ProfileScreen} />
           <Route exact path="/cart" component={CartScreen} />
         </Switch>
       </main>
