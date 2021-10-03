@@ -13,6 +13,7 @@ import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import OrderHistoryScreen from "./screens/OrderHistoryScreen";
+import ProductListScreen from "./screens/ProductListScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
 // components
@@ -20,6 +21,7 @@ import Navbar from "./components/Navbar";
 import Backdrop from "./components/Backdrop";
 import SideDrawer from "./components/SideDrawer";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
 
 //import Footer from "./components/Footer";
 
@@ -43,6 +45,7 @@ function App() {
           <Route exact path="/order/:id" component={OrderScreen} />
           <Route exact path="/orderhistory" component={OrderHistoryScreen} />
           <PrivateRoute exact path="/profile" component={ProfileScreen} />
+          <AdminRoute exact path="/productlist" component={ProductListScreen} />
           <Route exact path="/cart" component={CartScreen} />
         </Switch>
       </main>
