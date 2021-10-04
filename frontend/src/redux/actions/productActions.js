@@ -48,3 +48,32 @@ export const removeProductDetails = () => (dispatch) => {
     type: actionTypes.GET_PRODUCT_DETAILS_RESET,
   });
 };
+
+export const createProduct = () => async (dispatch, getState) => {
+  dispatch({ type: actionTypes.PRODUCT_CREATE_REQUEST });
+
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await axios.post(
+      "/api/products",
+      {},
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
+    dispatch({
+      type: actionTypes.PRODUCT_CREATE_SUCCESS,
+      payload: data.product,
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.PRODUCT_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

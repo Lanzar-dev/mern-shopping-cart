@@ -143,3 +143,16 @@ button {
 button.small {
   font-size: o.8rem;
 }
+
+/* productlist screen */
+button.create-btn {
+  font-size: 1.2rem;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  background-color: #f4f4;
+}
+
+button.create-btn:hover {
+  background-color: rgba(248, 9, 248, 0.267);
+}
