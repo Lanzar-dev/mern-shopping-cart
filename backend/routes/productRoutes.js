@@ -7,6 +7,7 @@ const {
   getAllProducts,
   getProductById,
   createProduct,
+  updateProductById,
 } = require("../controller/productControllers");
 
 //@desc GET all products from db
@@ -19,5 +20,6 @@ router.get("/", getAllProducts);
 //@access Public
 router.get("/:id", getProductById);
 router.post("/", isAuth, createProduct);
+router.put("/:id", isAuth, updateProductById);
 
 module.exports = router;

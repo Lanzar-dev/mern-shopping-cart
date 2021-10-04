@@ -35,8 +35,29 @@ const createProduct = async (req, res) => {
   res.send({ message: "Product created", product: createdProduct });
 };
 
+const updateProductById = async (req, res) => {
+  const id = req.params.id;
+  const product = await Product.findById(id);
+  if (product) {
+    product.name = req.body.name;
+    product.description = req.body.description;
+    product.price = req.body.price;
+    product.countInStock = req.body.countInStock;
+    product.imageUrl = req.body.imageUrl;
+
+    const updatedProduct = await product.save();
+    res.send({
+      message: "Product Updated Successfully",
+      product: updatedProduct,
+    });
+  } else {
+    res.status(404).send({ message: "Product Not Found" });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
+  updateProductById,
 };
