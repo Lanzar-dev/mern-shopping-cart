@@ -5,6 +5,7 @@ import { useState } from "react";
 // screens
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -37,6 +38,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductScreen} />
+          <Route exact path="/product/:id/edit" component={ProductEditScreen} />
           <Route exact path="/signin" component={SigninScreen} />
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/shipping" component={ShippingAddressScreen} />
