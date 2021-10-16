@@ -8,6 +8,7 @@ const {
   getProductById,
   createProduct,
   updateProductById,
+  deleteProduct,
 } = require("../controller/productControllers");
 
 //@desc GET all products from db
@@ -21,5 +22,6 @@ router.get("/", getAllProducts);
 router.get("/:id", getProductById);
 router.post("/", isAuth, createProduct);
 router.put("/:id", isAuth, updateProductById);
+router.delete("/:id", isAuth, deleteProduct);
 
 module.exports = router;

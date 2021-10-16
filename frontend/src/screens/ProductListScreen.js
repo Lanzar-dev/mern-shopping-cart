@@ -5,9 +5,13 @@ import MessageBox from "../components/MessageBox";
 import "./ProductListScreen.css";
 import {
   createProduct,
+  deleteProduct,
   getProducts as listProducts,
 } from "../redux/actions/productActions";
-import { PRODUCT_CREATE_RESET } from "../redux/constants/productConstants";
+import {
+  PRODUCT_CREATE_RESET,
+  PRODUCT_DELETE_RESET,
+} from "../redux/constants/productConstants";
 
 function ProductListScreen({ history }) {
   const getProducts = useSelector((state) => state.getProducts);
@@ -21,6 +25,13 @@ function ProductListScreen({ history }) {
     product: createdProduct,
   } = productCreate;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (successCreate) {
@@ -28,12 +39,17 @@ function ProductListScreen({ history }) {
 
       history.push(`/product/${createdProduct._id}/edit`);
     }
+    if (successDelete) {
+      dispatch({ type: PRODUCT_DELETE_RESET });
+    }
 
     dispatch(listProducts());
-  }, [dispatch, successCreate, history, createdProduct]);
+  }, [dispatch, successCreate, successDelete, history, createdProduct]);
 
-  const deleteHandler = () => {
-    //TODO: dispatch delete handler
+  const deleteHandler = (product) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      dispatch(deleteProduct(product._id));
+    }
   };
 
   const createHandler = () => {
@@ -48,6 +64,9 @@ function ProductListScreen({ history }) {
           Create Product
         </button>
       </div>
+      {loadingDelete && <LoadingBox></LoadingBox>}
+      {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+
       {loadingCreate && <LoadingBox></LoadingBox>}
       {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
 

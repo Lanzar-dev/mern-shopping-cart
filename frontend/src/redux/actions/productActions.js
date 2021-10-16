@@ -100,3 +100,27 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     });
   }
 };
+
+export const deleteProduct = (productId) => async (dispatch, getState) => {
+  dispatch({ type: actionTypes.PRODUCT_DELETE_REQUEST, payload: productId });
+
+  const {
+    userSignin: { userInfo },
+  } = getState();
+
+  try {
+    const { data } = await axios.delete(`/api/products/${productId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+
+    dispatch({ type: actionTypes.PRODUCT_DELETE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.PRODUCT_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

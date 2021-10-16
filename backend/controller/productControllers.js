@@ -1,3 +1,4 @@
+const { reset } = require("nodemon");
 const Product = require("../models/Product");
 
 const getAllProducts = async (req, res) => {
@@ -55,9 +56,21 @@ const updateProductById = async (req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    const deletedProduct = await product.remove();
+
+    res.send({ message: "Product Deleted", product: deletedProduct });
+  } else {
+    res.status(404).send({ message: "Product Not Found" });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
   updateProductById,
+  deleteProduct,
 };
