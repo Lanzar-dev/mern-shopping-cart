@@ -30,9 +30,18 @@ exports.signin = async (req, res) => {
 };
 
 exports.register = async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, confirmPassword } = await req.body;
 
   try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).send({ message: "User already exist" });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).send({ message: "Passwords does not match" });
+    }
+
     const user = await User.create({
       name,
       email,

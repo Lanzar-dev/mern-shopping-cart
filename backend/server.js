@@ -5,6 +5,7 @@ const path = require("path");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const uploadRouter = require("./routes/uploadRoutes");
 
 connectDB();
 
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(express.json());
 
+app.use("/api/uploads", uploadRouter);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
@@ -19,6 +21,9 @@ app.use("/api/orders", orderRoutes);
 // app.get("/api/config/fluttwerwave", (req, res) => {
 //   res.send(process.env.REACT_APP_PUBLIC_KEY);
 // });
+
+// const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
