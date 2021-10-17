@@ -81,10 +81,23 @@ const userOrders = async (req, res) => {
   res.send(orders);
 };
 
+const orderDelete = async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    const deletedOrder = await order.remove();
+
+    res.send({ message: "Order Deleted", order: deletedOrder });
+  } else {
+    res.status(404).send({ message: "Order Not Found" });
+  }
+};
+
 module.exports = {
   orderDetails,
   orderDetailsById,
   orderPaymentDetailsUpdate,
   getUserOrders,
   userOrders,
+  orderDelete,
 };
