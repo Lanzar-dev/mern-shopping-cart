@@ -1,3 +1,4 @@
+const { reset } = require("nodemon");
 const Order = require("../models/Order");
 
 const orderDetails = async (req, res, next) => {
@@ -74,9 +75,16 @@ const getUserOrders = async (req, res) => {
   res.send(orders);
 };
 
+const userOrders = async (req, res) => {
+  const orders = await Order.find({}).populate("user", "name");
+
+  res.send(orders);
+};
+
 module.exports = {
   orderDetails,
   orderDetailsById,
   orderPaymentDetailsUpdate,
   getUserOrders,
+  userOrders,
 };
