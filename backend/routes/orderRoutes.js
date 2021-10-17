@@ -6,6 +6,7 @@ const {
   getUserOrders,
   userOrders,
   orderDelete,
+  orderDeliver,
 } = require("../controller/orderController");
 const { isAuth } = require("../middleware/auth");
 
@@ -17,5 +18,6 @@ router.post("/", isAuth, orderDetails);
 router.get("/:id", isAuth, orderDetailsById);
 router.put("/:id/pay", isAuth, orderPaymentDetailsUpdate);
 router.delete("/:id", isAuth, orderDelete);
+router.put("/:id/deliver", isAuth, orderDeliver);
 
 module.exports = router;

@@ -7,16 +7,26 @@ import "./OrderScreen.css";
 
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { detailsOrder, payOrder } from "../redux/actions/orderActions";
+import {
+  deliverOrder,
+  detailsOrder,
+  payOrder,
+} from "../redux/actions/orderActions";
 
 import FlutterwavePament from "../components/FlutterwavePayment";
-import { ORDER_PAY_RESET } from "../redux/constants/orderConstants";
+import {
+  ORDER_DELIVER_RESET,
+  ORDER_PAY_RESET,
+} from "../redux/constants/orderConstants";
 
 function OrderScreen({ match }) {
   const orderId = match.params.id;
 
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   const orderPay = useSelector((state) => state.orderPay);
   const {
@@ -25,17 +35,34 @@ function OrderScreen({ match }) {
     success: successPay,
   } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const {
+    loading: loadingDeliver,
+    error: errorDeliver,
+    success: successDeliver,
+  } = orderDeliver;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!order || successPay || (order && order._id !== orderId)) {
+    if (
+      !order ||
+      successPay ||
+      successDeliver ||
+      (order && order._id !== orderId)
+    ) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
     }
-  }, [dispatch, orderId, order, successPay]);
+  }, [dispatch, orderId, order, successPay, successDeliver]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));
+  };
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order._id));
   };
 
   return (
@@ -158,6 +185,21 @@ function OrderScreen({ match }) {
 
                       <FlutterwavePament onSuccess={successPaymentHandler} />
                     </>
+                  )}
+                  {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                    <li>
+                      {loadingDeliver && <LoadingBox></LoadingBox>}
+                      {errorDeliver && (
+                        <MessageBox variant="danger">{errorDeliver}</MessageBox>
+                      )}
+                      <button
+                        type="button"
+                        className="primary block"
+                        onClick={deliverHandler}
+                      >
+                        Deliver Order
+                      </button>
+                    </li>
                   )}
                 </ul>
               </div>
