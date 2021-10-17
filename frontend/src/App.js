@@ -17,6 +17,7 @@ import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import OrderListScreen from "./screens/OrderListScreen";
+import UserListScreen from "./screens/UserListScreen";
 
 // components
 import Navbar from "./components/Navbar";
@@ -50,6 +51,7 @@ function App() {
           <PrivateRoute exact path="/profile" component={ProfileScreen} />
           <AdminRoute exact path="/productlist" component={ProductListScreen} />
           <AdminRoute exact path="/orderlist" component={OrderListScreen} />
+          <AdminRoute exact path="/userlist" component={UserListScreen} />
           <Route exact path="/cart" component={CartScreen} />
         </Switch>
       </main>
