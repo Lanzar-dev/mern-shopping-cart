@@ -5,7 +5,10 @@ import MessageBox from "../components/MessageBox";
 import { deleteUser, listUsers } from "../redux/actions/userActions";
 import "./ProductListScreen.css";
 import "./OrderHistoryScreen.css";
-import { USER_DELETE_RESET } from "../redux/constants/userConstants";
+import {
+  USER_DELETE_RESET,
+  USER_DETAILS_RESET,
+} from "../redux/constants/userConstants";
 
 function UserListScreen({ history }) {
   const userList = useSelector((state) => state.userList);
@@ -24,6 +27,7 @@ function UserListScreen({ history }) {
       dispatch({ type: USER_DELETE_RESET });
     }
     dispatch(listUsers());
+    dispatch({ type: USER_DETAILS_RESET });
   }, [dispatch, successDelete]);
 
   const deleteHandler = (user) => {
@@ -64,7 +68,11 @@ function UserListScreen({ history }) {
                 <td>{user.email}</td>
                 <td>{user.isAdmin ? "YES" : "NO"}</td>
                 <td>
-                  <button type="button" className="small">
+                  <button
+                    type="button"
+                    className="small"
+                    onClick={() => history.push(`/user/${user._id}/edit`)}
+                  >
                     Edit
                   </button>
                   <button

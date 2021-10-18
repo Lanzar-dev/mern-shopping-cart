@@ -18,6 +18,7 @@ import ProductListScreen from "./screens/ProductListScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
+import UserEditScreen from "./screens/UserEditScreen";
 
 // components
 import Navbar from "./components/Navbar";
@@ -52,6 +53,7 @@ function App() {
           <AdminRoute exact path="/productlist" component={ProductListScreen} />
           <AdminRoute exact path="/orderlist" component={OrderListScreen} />
           <AdminRoute exact path="/userlist" component={UserListScreen} />
+          <AdminRoute exact path="/user/:id/edit" component={UserEditScreen} />
           <Route exact path="/cart" component={CartScreen} />
         </Switch>
       </main>
