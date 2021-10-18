@@ -2,22 +2,44 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { listUsers } from "../redux/actions/userActions";
+import { deleteUser, listUsers } from "../redux/actions/userActions";
 import "./ProductListScreen.css";
 import "./OrderHistoryScreen.css";
+import { USER_DELETE_RESET } from "../redux/constants/userConstants";
 
 function UserListScreen({ history }) {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = userDelete;
+
   const dispatch = useDispatch();
   useEffect(() => {
+    if (successDelete) {
+      dispatch({ type: USER_DELETE_RESET });
+    }
     dispatch(listUsers());
-  }, [dispatch]);
+  }, [dispatch, successDelete]);
+
+  const deleteHandler = (user) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      dispatch(deleteUser(user._id));
+    }
+  };
 
   return (
     <div className="order_history">
       <h2>Users</h2>
+      {loadingDelete && <LoadingBox></LoadingBox>}
+      {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+      {successDelete && (
+        <MessageBox variant="success">User Deleted Successfully</MessageBox>
+      )}
 
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -45,7 +67,13 @@ function UserListScreen({ history }) {
                   <button type="button" className="small">
                     Edit
                   </button>
-                  <button className="small">Delete</button>
+                  <button
+                    type="button"
+                    className="small"
+                    onClick={() => deleteHandler(user)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

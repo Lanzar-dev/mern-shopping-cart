@@ -95,3 +95,19 @@ exports.getAllUsers = async (req, res) => {
 
   res.send(users);
 };
+
+exports.deleteUser = async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    if (user.emai === "tylanzar@gmail.com") {
+      res.status(400).send({ message: "Can Not Delete Admin User" });
+    }
+
+    const deletedUser = await user.remove();
+
+    res.send({ message: "User Deleted", user: deletedUser });
+  } else {
+    res.status(404).send({ message: "User Not Found" });
+  }
+};

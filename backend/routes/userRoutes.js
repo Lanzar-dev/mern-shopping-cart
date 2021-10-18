@@ -6,6 +6,7 @@ const {
   getUserById,
   userProfileUpdate,
   getAllUsers,
+  deleteUser,
 } = require("../controller/userController");
 const { isAuth } = require("../middleware/auth");
 
@@ -17,5 +18,6 @@ router.post("/register", register);
 router.get("/:id", getUserById);
 router.put("/profile", isAuth, userProfileUpdate);
 router.get("/", isAuth, getAllUsers);
+router.delete("/:id", isAuth, deleteUser);
 
 module.exports = router;
