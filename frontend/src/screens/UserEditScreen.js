@@ -4,6 +4,7 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { USER_UPDATE_RESET } from "../redux/constants/userConstants";
 import { detailsUser, updateUser } from "../redux/actions/userActions";
+import "./UserEditScreen.css";
 
 function UserEditScreen({ match, history }) {
   const userId = match.params.id;
@@ -81,7 +82,7 @@ function UserEditScreen({ match, history }) {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
+            <div className="admin-checkbox">
               <label htmlFor="admin">Admin:</label>
               <input
                 type="checkbox"

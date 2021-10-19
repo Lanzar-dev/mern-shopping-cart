@@ -1,0 +1,14 @@
+.form > div.admin-checkbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form > div.admin-checkbox > label {
+  width: 0%;
+}
+
+.form > div.admin-checkbox > input {
+  width: 30%;
+}
