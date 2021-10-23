@@ -1,0 +1,109 @@
+.search button {
+  border-radius: 0 0.5rem 0.5rem 0;
+  border-right: none;
+  margin-right: 0.5rem;
+  padding: 0.7rem 0.5rem;
+}
+
+.search input {
+  border-radius: 0.5rem 0 0 0.5rem;
+  border-right: none;
+  margin-left: 0.5rem;
+}
+
+.search input {
+  padding: 0.7rem 2.5rem;
+}
+
+@media (max-width: 950px) {
+  .search button {
+    padding: 0.7rem 0.5rem;
+  }
+
+  .search input {
+    padding: 0.7rem 2.7rem;
+  }
+}
+
+@media (max-width: 830px) {
+}
+
+@media (max-width: 700px) {
+  .search button {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .search input {
+    padding: 0.75rem 2.7rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .search button {
+    padding: 0.85rem 0.5rem;
+  }
+
+  .search input {
+    padding: 0.85rem 2.7rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .search button {
+    padding: 0.7rem 0.4rem;
+  }
+
+  .search input {
+    padding: 0.7rem 2.5rem;
+  }
+}
+
+@media (max-width: 530px) {
+  .search button {
+    padding: 0.5rem 0.3rem;
+  }
+
+  .search input {
+    padding: 0.5rem 2.2rem;
+  }
+}
+
+@media (max-width: 455px) {
+  .search button {
+    padding: 0.5rem 0.15rem;
+  }
+
+  .search input {
+    padding: 0.5rem 1.8rem;
+  }
+}
+
+@media (max-width: 432px) {
+  .search button {
+    padding: 0.4rem 0.1rem;
+  }
+
+  .search input {
+    padding: 0.4rem 1.4rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .search button {
+    padding: 0.4rem 0.1rem;
+  }
+
+  .search input {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .search button {
+    padding: 0.4rem 0.1rem;
+  }
+
+  .search input {
+    padding: 0.4rem 0.3rem;
+  }
+}

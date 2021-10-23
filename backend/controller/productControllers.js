@@ -2,8 +2,11 @@ const { reset } = require("nodemon");
 const Product = require("../models/Product");
 
 const getAllProducts = async (req, res) => {
+  const name = req.query.name || "";
+  const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
+
   try {
-    const products = await Product.find({});
+    const products = await Product.find({ ...nameFilter });
 
     res.json(products);
   } catch (error) {
