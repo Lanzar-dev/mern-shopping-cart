@@ -54,7 +54,6 @@ exports.register = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
-    // res.status(401).send({ message: "Email already exist" });
   }
 };
 

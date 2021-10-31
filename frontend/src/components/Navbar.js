@@ -2,6 +2,8 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../redux/actions/userActions";
+import SearchBox from "./SearchBox";
+import { Route } from "react-router";
 
 const Navbar = ({ click }) => {
   const cart = useSelector((state) => state.cart);
@@ -26,6 +28,13 @@ const Navbar = ({ click }) => {
         <Link to="/">
           <h2>MOJE STORE</h2>
         </Link>
+      </div>
+
+      <div>
+        <Route
+          render={({ history }) => <SearchBox history={history} />}
+        ></Route>
+        {/* <SearchBox history={history} /> */}
       </div>
 
       <ul className="navbar__links">

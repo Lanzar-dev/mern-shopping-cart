@@ -9,19 +9,15 @@ const {
   createProduct,
   updateProductById,
   deleteProduct,
+  createProductReviews,
 } = require("../controller/productControllers");
 
-//@desc GET all products from db
-//@route GET /api/products
-//@access Public
 router.get("/", getAllProducts);
 
-//@desc GET a product by id from db
-//@route GET /api/product/:id
-//@access Public
 router.get("/:id", getProductById);
 router.post("/", isAuth, createProduct);
 router.put("/:id", isAuth, updateProductById);
 router.delete("/:id", isAuth, deleteProduct);
+router.post("/:id/reviews", isAuth, createProductReviews);
 
 module.exports = router;

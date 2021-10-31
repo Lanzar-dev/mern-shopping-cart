@@ -1,26 +1,28 @@
 import * as actionTypes from "../constants/productConstants";
 import axios from "axios";
 
-export const getProducts = () => async (dispatch) => {
-  try {
-    dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
+export const getProducts =
+  (name = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get("/api/products");
+      const { data } = await axios.get(`/api/products?name=${name}`);
 
-    dispatch({
-      type: actionTypes.GET_PRODUCTS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: actionTypes.GET_PRODUCTS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getProductDetails = (id) => async (dispatch) => {
   try {
@@ -124,3 +126,34 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     });
   }
 };
+
+export const createReview =
+  (productId, review) => async (dispatch, getState) => {
+    dispatch({ type: actionTypes.PRODUCT_REVIEW_CREATE_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+
+    try {
+      const { data } = await axios.post(
+        `/api/products/${productId}/reviews`,
+        review,
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+
+      dispatch({
+        type: actionTypes.PRODUCT_REVIEW_CREATE_SUCCESS,
+        payload: data.review,
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.PRODUCT_REVIEW_CREATE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
