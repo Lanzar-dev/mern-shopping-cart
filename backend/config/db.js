@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
+// mongodb compass
 // const uri = "mongodb://localhost/mojestore";
 
 // Mongodb Atlas
