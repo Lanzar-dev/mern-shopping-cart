@@ -126,3 +126,34 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
     });
   }
 };
+
+export const createReview =
+  (productId, review) => async (dispatch, getState) => {
+    dispatch({ type: actionTypes.PRODUCT_REVIEW_CREATE_REQUEST });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+
+    try {
+      const { data } = await axios.post(
+        `/api/products/${productId}/reviews`,
+        review,
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+
+      dispatch({
+        type: actionTypes.PRODUCT_REVIEW_CREATE_SUCCESS,
+        payload: data.review,
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.PRODUCT_REVIEW_CREATE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
