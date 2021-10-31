@@ -1,4 +1,3 @@
-const { reset } = require("nodemon");
 const Product = require("../models/Product");
 
 const getAllProducts = async (req, res) => {
